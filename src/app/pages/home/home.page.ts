@@ -6,6 +6,7 @@ import { HomeService } from '../../services/home.service';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
+  standalone: false
 })
 export class HomePage implements OnInit {
 
@@ -18,6 +19,19 @@ export class HomePage implements OnInit {
       email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
       senha: ['', [Validators.required, Validators.minLength(5)]]
     });
+
+    //teste
+    this.homeService.getAll().subscribe({
+      next: (response: any) => {
+        console.log("get all realizado com sucesso!");
+        console.log(response);
+      },
+      error: (err) => {
+        console.error("erro get all: ", err);
+      }
+    }
+    )
+
   }
 
   onSubmit() {
@@ -27,17 +41,16 @@ export class HomePage implements OnInit {
         Senha: this.loginForm.value.senha
       }
 
-      console.log(funcionario);
 
-      /*this.homeService.logarFuncionario(funcionario).subscribe({
-          next: (response: any) => {
-            console.log("Funcionário logado com sucesso!");
-          },
-          error: (err) => {
-            console.error("Erro ao logar Funcionário: ", err);
-          }
+      this.homeService.logarFuncionario(funcionario).subscribe({
+        next: (response: any) => {
+          console.log("Funcionário logado com sucesso!");
+        },
+        error: (err) => {
+          console.error("Erro ao logar Funcionário: ", err);
         }
-        )*/
+      }
+      )
 
 
     }

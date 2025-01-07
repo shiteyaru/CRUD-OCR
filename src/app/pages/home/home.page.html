@@ -5,18 +5,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="container">
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="container ion-text-center ion-text-justify">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="ion-padding">
+      <label for="email">Email</label>
+      <input type="email" placeholder="Digite seu email..." formControlName="email" minlength="5" required>
+      <label for="senha">Senha</label>
+      <input type="password" placeholder="Digite sua senha..." formControlName="senha" minlength="5" required>
+      <ion-button type="submit" slot="middle" [disabled]="loginForm.invalid" color="success">Login</ion-button>
 
-      <ion-input labelPlacement="floating" formControlName="email" required>
-        <div slot="label">Email </div>
-      </ion-input>
-      <ion-input labelPlacement="floating" formControlName="senha" required>
-        <div slot="label">Senha</div>
-      </ion-input>
-      <ion-button type="submit" [disabled]="loginForm.invalid">Login</ion-button>
     </form>
-
   </div>
+
 </ion-content>

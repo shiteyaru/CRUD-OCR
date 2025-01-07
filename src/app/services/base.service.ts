@@ -16,7 +16,7 @@ export class BaseService {
             //  window.location.hostname +
             //  (window.location.protocol === 'https:7185') +
             //   '/api/'
-            'https://192.168.70.161:7276/api/'
+            'https://192.168.70.161:7023/api/'
         );
     }
 }

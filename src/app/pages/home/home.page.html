@@ -1,20 +1,22 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> CRUD-OCR</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="container">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <ion-input labelPlacement="floating" formControlName="email" required>
+        <div slot="label">Email </div>
+      </ion-input>
+      <ion-input labelPlacement="floating" formControlName="senha" required>
+        <div slot="label">Senha</div>
+      </ion-input>
+      <ion-button type="submit" [disabled]="loginForm.invalid">Login</ion-button>
+    </form>
+
   </div>
 </ion-content>

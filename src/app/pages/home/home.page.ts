@@ -34,6 +34,25 @@ export class HomePage implements OnInit {
 
   }
 
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get senha() {
+    return this.loginForm.get('senha');
+  }
+
+  verificaEmail(){
+    const emailControl = this.loginForm.get("email");
+    emailControl?.markAsTouched();
+  }
+
+  verificaSenha(){
+    const senhaControl = this.loginForm.get("senha");
+    senhaControl?.markAsTouched();
+  }
+
+
   onSubmit() {
     if (this.loginForm.valid) {
       const funcionario = {

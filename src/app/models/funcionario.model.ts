@@ -1,4 +1,4 @@
-export type Funcionario = {
+export type FuncionarioModel = {
     id: number,
     cpf: number,
     nome: string,

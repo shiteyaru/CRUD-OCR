@@ -1,21 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HomeService } from '../../services/home.service';
+import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 import { LoginModel } from '../../models/login.model';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-login',
+  templateUrl: 'login.page.html',
+  styleUrls: ['login.page.scss'],
   standalone: false
 })
-export class HomePage implements OnInit {
+export class LoginPage implements OnInit {
 
   verificaLogin: boolean = false;
   nome: string = '';
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private homeService: HomeService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -23,8 +28,10 @@ export class HomePage implements OnInit {
       senha: ['', [Validators.required, Validators.minLength(5)]]
     });
 
-    //teste
-    this.homeService.getAll().subscribe({
+    /*
+    MÉTODO GET ALL FUNCIONARIO
+    
+    this.loginService.getAll().subscribe({
       next: (response: any) => {
         console.log("get all realizado com sucesso!");
         console.log(response);
@@ -33,7 +40,7 @@ export class HomePage implements OnInit {
         console.error("erro get all: ", err);
       }
     }
-    )
+    )*/
 
   }
 
@@ -64,10 +71,14 @@ export class HomePage implements OnInit {
       }
 
 
-      this.homeService.logarFuncionario(funcionario).subscribe({
+      this.loginService.logarFuncionario(funcionario).subscribe({
         next: (res: LoginModel) => {
           this.verificaLogin = true;
           this.nome = res.name;
+
+          setTimeout(() => {
+            this.router.navigate(['/lista-funcionarios']);
+          }, 2000);
         },
         error: (err) => {
           console.error("Erro ao logar Funcionário: ", err);

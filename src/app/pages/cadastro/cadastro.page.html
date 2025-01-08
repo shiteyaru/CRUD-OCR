@@ -1,13 +1,74 @@
-<ion-header [translucent]="true">
+<ion-header>
+  <!--
   <ion-toolbar>
-    <ion-title>cadastro</ion-title>
+    <ion-title> CRUD-OCR</ion-title>
   </ion-toolbar>
+  -->
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cadastro</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="container ion-text-center ion-text-justify">
+    <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()" class="ion-padding">
+
+      <div class="form-group">
+        <label for="Nome" class="ion-margin">Nome</label>
+        <input type="text" placeholder="Digite seu nome..." formControlName="nome" minlength="5" required
+          class="ion-padding">
+        <div *ngIf="nome?.touched && nome?.invalid" class="erroMensagem margin-left">
+          <div *ngIf="nome?.hasError('required')">O nome é obrigatório.</div>
+          <div *ngIf="nome?.hasError('minlength')">O nome deve ter pelo menos 5 caracteres.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="Cpf" class="ion-margin">CPF</label>
+        <input type="text" placeholder="Digite seu CPF..." formControlName="cpf" minlength="5" required
+          class="ion-padding">
+        <div *ngIf="cpf?.touched && cpf?.invalid" class="erroMensagem margin-left">
+          <div *ngIf="cpf?.hasError('required')">O CPF é obrigatório.</div>
+          <div *ngIf="cpf?.hasError('minlength')">O CPF deve ter 11 caracteres.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="ion-margin">Email</label>
+        <input type="email" placeholder="Digite seu email..." formControlName="email" minlength="5" required
+          (blur)="verificaEmail()" class="ion-padding">
+        <div *ngIf="email?.touched && email?.invalid" class="erroMensagem margin-left">
+          <div *ngIf="email?.hasError('required')">O email é obrigatório.</div>
+          <div *ngIf="email?.hasError('email')">Por favor, insira um email válido.</div>
+          <div *ngIf="email?.hasError('minlength')">O email deve ter pelo menos 5 caracteres.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="senha" class="ion-margin">Senha</label>
+        <input type="password" placeholder="Digite sua senha..." formControlName="senha" minlength="5" required
+          (blur)="verificaSenha()" class="ion-padding">
+        <div *ngIf="senha?.touched && senha?.invalid" class="erroMensagem margin-left">
+          <div *ngIf="senha?.hasError('required')">A senha é obrigatória.</div>
+          <div *ngIf="senha?.hasError('minlength')">A senha deve ter pelo menos 5 caracteres.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmarsenha" class="ion-margin">Confirmar Senha</label>
+        <input type="password" placeholder="Confirme sua senha..." formControlName="confirmarsenha" minlength="5"
+          required (blur)="verificaConfirmSenha()" class="ion-padding">
+        <div *ngIf="confirmarsenha?.touched && confirmarsenha?.invalid" class="erroMensagem margin-left">
+          <div *ngIf="confirmarsenha?.hasError('senhasNaoCoincidem')">As senhas não coincidem.</div>
+        </div>
+      </div>
+
+
+      <ion-button type="submit" [disabled]="cadastroForm.invalid" shape="round" color="primary">Login</ion-button>
+
+      <!--<p style="margin-top: 30px; color: white;">Desenvolvido por</p>
+
+      <ion-img src="../../../assets/image/systh_logo.png" class="responsiveImg"></ion-img>-->
+
+      <p *ngIf="verificaCadastro" class="margin-left color-white">Cadastro realizado com sucesso!</p>
+
+    </form>
+  </div>
 </ion-content>

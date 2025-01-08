@@ -47,10 +47,10 @@ form {
   flex-direction: column;
   align-items: center;
   background: rgb(66, 66, 66);
-  height: 600px;
+  height: max-content;
   margin-left: 65%;
   width: 500px;
-  box-shadow: 5px 5px 12px 0px rgba(0,0,0,0.6);
+  box-shadow: 5px 5px 12px 0px rgba(0, 0, 0, 0.6);
   border-radius: 20px;
 }
 
@@ -81,7 +81,7 @@ input {
 input:focus {
   border: none;
   outline: none;
-  box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.7);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
 }
 
 .erroMensagem {
@@ -93,8 +93,7 @@ ion-button {
 }
 
 .responsiveImg {
-  width: 60%;
+  width: 50%;
   height: auto;
   filter: drop-shadow(5px 2px 4px #202020);
-  margin-top: -30px;
 }

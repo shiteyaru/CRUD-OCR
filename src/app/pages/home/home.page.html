@@ -1,40 +1,13 @@
-<ion-header>
-  <!--
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> CRUD-OCR</ion-title>
+    <ion-title>Home</ion-title>
   </ion-toolbar>
-  -->
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="container ion-text-center ion-text-justify">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="ion-padding">
-
-      <div class="form-group">
-        <label for="email" class="ion-margin">Email</label>
-        <input type="email" placeholder="Digite seu email..." formControlName="email" minlength="5" required (blur)="verificaEmail()" class="ion-padding">
-        <div *ngIf="email?.touched && email?.invalid" class="erroMensagem">
-          <div *ngIf="email?.hasError('required')">O email é obrigatório.</div>
-          <div *ngIf="email?.hasError('email')">Por favor, insira um email válido.</div>
-          <div *ngIf="email?.hasError('minlength')">O email deve ter pelo menos 5 caracteres.</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="senha" class="ion-margin">Senha</label>
-        <input type="password" placeholder="Digite sua senha..." formControlName="senha" minlength="5" required (blur)="verificaSenha()" class="ion-padding">
-        <div *ngIf="senha?.touched && senha?.invalid" class="erroMensagem">
-          <div *ngIf="senha?.hasError('required')">A senha é obrigatória.</div>
-          <div *ngIf="senha?.hasError('minlength')">A senha deve ter pelo menos 5 caracteres.</div>
-        </div>
-      </div>
-
-      <ion-button type="submit" [disabled]="loginForm.invalid" shape="round" color="success">Login</ion-button>
-
-      <p style="margin-top: 30px; color: white;">Desenvolvido por</p>
-
-      <ion-img src="../../../assets/image/systh_logo.png" class="responsiveImg"></ion-img>
-
-    </form>
-  </div>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Home</ion-title>
+    </ion-toolbar>
+  </ion-header>
 </ion-content>

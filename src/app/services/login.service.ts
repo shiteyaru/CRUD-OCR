@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { FuncionarioModel } from '../models/funcionario.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginModel } from '../models/login.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
     providedIn: 'root',
 })
 
-export class HomeService {
+export class LoginService {
 
     private url = 'https://192.168.70.161:7023/api/funcionario/logarfuncionario';
     private urlteste = 'https://192.168.70.161:7023/api/funcionario/buscartodosfuncionarios';
@@ -20,8 +19,14 @@ export class HomeService {
         return this.http.post<LoginModel>(this.url, usuario);
     }
 
-    getAll(): Observable<FuncionarioModel> {
-        return this.http.get<FuncionarioModel>(this.urlteste);
+    /*  
+    URL DO GET ALL FUNCIONARIO
+    private urlteste = 'https://192.168.70.161:7023/api/funcionario/buscartodosfuncionarios';
+
+    ASSINATURA DO MÉTODO GET ALL
+    getAll(): Observable<Funcionario> {
+    return this.http.get<Funcionario>(this.urlteste);
     }
+    */
 }
 

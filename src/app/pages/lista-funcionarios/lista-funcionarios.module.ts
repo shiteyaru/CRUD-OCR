@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ListaFuncionariosPageRoutingModule } from './lista-funcionarios-routing.module';
@@ -13,8 +12,9 @@ import { ListaFuncionariosPage } from './lista-funcionarios.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     ListaFuncionariosPageRoutingModule
   ],
   declarations: [ListaFuncionariosPage]
 })
-export class ListaFuncionariosPageModule {}
+export class ListaFuncionariosPageModule { }

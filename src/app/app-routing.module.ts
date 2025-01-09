@@ -10,17 +10,18 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },  {
+  },
+  {
     path: 'cadastro',
-    loadChildren: () => import('./pages/cadastro/cadastro.module').then( m => m.CadastroPageModule)
+    loadChildren: () => import('./pages/cadastro/cadastro.module').then(m => m.CadastroPageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'lista-funcionarios',
-    loadChildren: () => import('./pages/lista-funcionarios/lista-funcionarios.module').then( m => m.ListaFuncionariosPageModule)
+    loadChildren: () => import('./pages/lista-funcionarios/lista-funcionarios.module').then(m => m.ListaFuncionariosPageModule)
   },
 
 ];

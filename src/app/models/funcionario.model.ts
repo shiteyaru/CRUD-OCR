@@ -5,3 +5,4 @@ export type FuncionarioModel = {
     email: string,
     senha: string
 }
+

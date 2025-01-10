@@ -78,6 +78,17 @@ input {
     background: white;
 }
 
+ion-select {
+    font-size: 21px;
+    border: none;
+    height: 45px;
+    width: 40%;
+    border-radius: 30px;
+    margin-bottom: 5px;
+    background: white;
+}
+
+
 input:focus {
     border: none;
     outline: none;

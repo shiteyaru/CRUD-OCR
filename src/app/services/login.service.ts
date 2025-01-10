@@ -3,30 +3,25 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginModel } from '../models/login.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BaseService } from './base.service';
 
 @Injectable({
     providedIn: 'root',
 })
 
-export class LoginService {
+export class LoginService extends BaseService {
 
-    private url = 'https://192.168.70.161:7023/api/funcionario/logarfuncionario';
-    private urlteste = 'https://192.168.70.161:7023/api/funcionario/buscartodosfuncionarios';
+    private url = 'Funcionario';
+    private urlADM = 'Administrador';
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { super() }
 
     logarFuncionario(usuario: any): Observable<LoginModel> {
-        return this.http.post<LoginModel>(this.url, usuario);
+        return this.http.post<LoginModel>(this.Basepath() + this.url + "/LogarFuncionario", usuario);
     }
 
-    /*  
-    URL DO GET ALL FUNCIONARIO
-    private urlteste = 'https://192.168.70.161:7023/api/funcionario/buscartodosfuncionarios';
-
-    ASSINATURA DO MÉTODO GET ALL
-    getAll(): Observable<Funcionario> {
-    return this.http.get<Funcionario>(this.urlteste);
+    logarADM(administrador: any): Observable<LoginModel> {
+        return this.http.post<LoginModel>(this.Basepath() + this.urlADM + "/LogarAdministrador", administrador);
     }
-    */
 }
 

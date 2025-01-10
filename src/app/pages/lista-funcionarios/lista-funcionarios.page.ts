@@ -13,7 +13,9 @@ import { IonAlert, IonButton } from '@ionic/angular';
 })
 export class ListaFuncionariosPage implements OnInit {
 
+  editando: boolean = false;
   funcionarios: FuncionarioModel[] = [
+
     { id: 1, cpf: "12345678901", nome: "João Silva", email: "joao.silva@email.com", senha: "senha123" },
     { id: 2, cpf: "98765432100", nome: "Maria Oliveira", email: "maria.oliveira@email.com", senha: "senha456" },
     { id: 3, cpf: "11122334455", nome: "Carlos Souza", email: "carlos.souza@email.com", senha: "senha789" },
@@ -35,7 +37,6 @@ export class ListaFuncionariosPage implements OnInit {
     { id: 19, cpf: "18192000112", nome: "Vitor Costa", email: "vitor.costa@email.com", senha: "senha116" },
     { id: 20, cpf: "19202111223", nome: "Patrícia Pereira", email: "patricia.pereira@email.com", senha: "senha117" }
   ];
-
   formBool: boolean = false;
   editarForm!: FormGroup;
   idFuncionario: number = 0;
@@ -54,20 +55,23 @@ export class ListaFuncionariosPage implements OnInit {
   }
 
   listarTodosFuncionarios() {
-    /*this.listaFuncionarios.getAll().subscribe({
+    this.listaFuncionarios.getAll().subscribe({
       next: (res: FuncionarioModel[]) => {
         this.funcionarios = res;
       },
       error: (err) => {
         console.error("Erro no getAll: ", err);
       }
+    }
     );
-    }*/
   }
 
+  addUsuario() {
+    this.editando = false;
+    this.abrirForm({ id: 0, nome: '', cpf: '', email: '', senha: '' } as FuncionarioModel);
+  }
 
   abrirForm(funcionario: FuncionarioModel) {
-
 
     this.editarForm = this.formBuilder.group({
       cpf: ['', [Validators.required, Validators.minLength(5)]],
@@ -76,9 +80,9 @@ export class ListaFuncionariosPage implements OnInit {
       senha: ['', [Validators.required, Validators.minLength(5)]],
     });
 
-
     this.formBool = true;
     this.idFuncionario = funcionario.id;
+    this.editando = funcionario.id > 0;
     this.editarForm.patchValue({
       cpf: funcionario.cpf,
       nome: funcionario.nome,
@@ -98,6 +102,21 @@ export class ListaFuncionariosPage implements OnInit {
     }
   }
 
+  cadastrarFuncionario(funcionario: FuncionarioModel) {
+    this.listaFuncionarios.cadastrarFuncionario(funcionario).subscribe({
+      next: (res: FuncionarioModel) => {
+        this.fecharForm();
+
+        setTimeout(() => {
+          this.listarTodosFuncionarios();
+        }, 200);
+
+      },
+      error: (err) => {
+        console.error("Erro ao cadastrar Funcionário: ", err);
+      }
+    })
+  }
 
   atualizarFuncionario(funcionario: FuncionarioModel) {
     this.listaFuncionarios.updateFuncionario(funcionario.id, funcionario).subscribe({
@@ -137,14 +156,15 @@ export class ListaFuncionariosPage implements OnInit {
         senha: this.editarForm.value.senha
       }
 
-      this.atualizarFuncionario(funcionario);
-
+      if (this.editando) {
+        this.atualizarFuncionario(funcionario);
+      }
+      else {
+        this.cadastrarFuncionario(funcionario);
+      }
     }
     else {
       console.log("invalido");
     }
   }
-
 }
-
-

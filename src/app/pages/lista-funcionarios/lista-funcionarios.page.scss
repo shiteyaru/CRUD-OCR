@@ -21,17 +21,16 @@
 
 td,
 th {
-  border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
 
 th {
-  background: #f4796b;
+  background: #9acef8;
 }
 
 td {
-  background: #f4998d;
+  background: #c3e3fd;
 }
 
 .container {
@@ -54,6 +53,7 @@ td {
 
 .tabela {
   height: 500px;
+  width: 1300px;
 }
 
 .overlay {
@@ -119,4 +119,25 @@ input:focus {
   border: none;
   outline: none;
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
+}
+
+.botaoAdd {
+  .botaoAdd {
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    width: 80px;
+    height: auto;
+    padding: 10px;
+    border-radius: 60px;
+    background: #c3e3fd;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+  }
+
 }

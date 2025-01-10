@@ -12,9 +12,8 @@ import { LoginModel } from '../../models/login.model';
 })
 export class LoginPage implements OnInit {
 
-  verificaLogin: boolean = false;
-  nome: string = '';
   loginForm!: FormGroup;
+  verificaLogin: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,24 +22,12 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
-      senha: ['', [Validators.required, Validators.minLength(5)]]
+      senha: ['', [Validators.required, Validators.minLength(5)]],
+      cargo: ['', [Validators.required, Validators.minLength(5)]]
     });
-
-    /*
-    MÉTODO GET ALL FUNCIONARIO
-    
-    this.loginService.getAll().subscribe({
-      next: (response: any) => {
-        console.log("get all realizado com sucesso!");
-        console.log(response);
-      },
-      error: (err) => {
-        console.error("erro get all: ", err);
-      }
-    }
-    )*/
 
   }
 
@@ -52,39 +39,53 @@ export class LoginPage implements OnInit {
     return this.loginForm.get('senha');
   }
 
-  verificaEmail() {
-    const emailControl = this.loginForm.get("email");
-    emailControl?.markAsTouched();
+  loginFuncionario(funcionario: any) {
+    this.loginService.logarFuncionario(funcionario).subscribe({
+      next: (res: LoginModel) => {
+        this.verificaLogin = true;
+        localStorage.setItem("Token", res.accessToken);
+
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+        }, 2000);
+      },
+      error: (err) => {
+        console.error("Erro ao logar Funcionário: ", err);
+      }
+    });
   }
 
-  verificaSenha() {
-    const senhaControl = this.loginForm.get("senha");
-    senhaControl?.markAsTouched();
+  loginADM(administrador: any) {
+    this.loginService.logarADM(administrador).subscribe({
+      next: (res: LoginModel) => {
+        this.verificaLogin = true;
+        localStorage.setItem("Token_ADM", res.accessToken);
+
+        setTimeout(() => {
+          this.router.navigate(['/lista-funcionarios']);
+        }, 2000);
+      },
+      error: (error) => {
+        console.error("Erro ao logar Administrador: ", error);
+      }
+    });
   }
 
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const funcionario = {
+      const usuario = {
         Email: this.loginForm.value.email,
-        Senha: this.loginForm.value.senha
+        Senha: this.loginForm.value.senha,
+        Cargo: this.loginForm.value.cargo
       }
 
-
-      this.loginService.logarFuncionario(funcionario).subscribe({
-        next: (res: LoginModel) => {
-          this.verificaLogin = true;
-          this.nome = res.name;
-
-          setTimeout(() => {
-            this.router.navigate(['/lista-funcionarios']);
-          }, 2000);
-        },
-        error: (err) => {
-          console.error("Erro ao logar Funcionário: ", err);
-        }
+      if (usuario.Cargo == "administrador") {
+        this.loginADM(usuario);
       }
-      )
+      else if (usuario.Cargo == "funcionario") {
+        this.loginFuncionario(usuario);
+      }
 
 
     }

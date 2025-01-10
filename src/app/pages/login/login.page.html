@@ -13,7 +13,7 @@
       <div class="form-group">
         <label for="email" class="ion-margin">Email</label>
         <input type="email" placeholder="Digite seu email..." formControlName="email" minlength="5" required
-          (blur)="verificaEmail()" class="ion-padding">
+          class="ion-padding">
         <div *ngIf="email?.touched && email?.invalid" class="erroMensagem margin-left">
           <div *ngIf="email?.hasError('required')">O email é obrigatório.</div>
           <div *ngIf="email?.hasError('email')">Por favor, insira um email válido.</div>
@@ -24,12 +24,22 @@
       <div class="form-group">
         <label for="senha" class="ion-margin">Senha</label>
         <input type="password" placeholder="Digite sua senha..." formControlName="senha" minlength="5" required
-          (blur)="verificaSenha()" class="ion-padding">
+          class="ion-padding">
         <div *ngIf="senha?.touched && senha?.invalid" class="erroMensagem margin-left">
           <div *ngIf="senha?.hasError('required')">A senha é obrigatória.</div>
           <div *ngIf="senha?.hasError('minlength')">A senha deve ter pelo menos 5 caracteres.</div>
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="cargo" class="ion-margin">Cargo</label>
+        <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" formControlName="cargo"
+          placeholder="Escolha o Cargo">
+          <ion-select-option value="administrador">Administrador</ion-select-option>
+          <ion-select-option value="funcionario">Funcionário</ion-select-option>
+        </ion-select>
+      </div>
+
 
       <ion-button type="submit" [disabled]="loginForm.invalid" shape="round" color="primary">Login</ion-button>
 
@@ -37,7 +47,7 @@
 
       <ion-img src="../../../assets/image/systh_logo.png" class="responsiveImg"></ion-img>
 
-      <p *ngIf="verificaLogin" class="margin-left color-white">Seja Bem-Vindo, {{nome}}!</p>
+
 
     </form>
   </div>

@@ -14,7 +14,7 @@ import { IonAlert, IonButton } from '@ionic/angular';
 export class ListaFuncionariosPage implements OnInit {
 
   editando: boolean = false;
-  funcionarios: FuncionarioModel[] = [
+  funcionarios: FuncionarioModel[] = [/*
 
     { id: 1, cpf: "12345678901", nome: "João Silva", email: "joao.silva@email.com", senha: "senha123" },
     { id: 2, cpf: "98765432100", nome: "Maria Oliveira", email: "maria.oliveira@email.com", senha: "senha456" },
@@ -36,7 +36,7 @@ export class ListaFuncionariosPage implements OnInit {
     { id: 18, cpf: "17181999001", nome: "Eliane Santos", email: "eliane.santos@email.com", senha: "senha115" },
     { id: 19, cpf: "18192000112", nome: "Vitor Costa", email: "vitor.costa@email.com", senha: "senha116" },
     { id: 20, cpf: "19202111223", nome: "Patrícia Pereira", email: "patricia.pereira@email.com", senha: "senha117" }
-  ];
+  */];
   formBool: boolean = false;
   editarForm!: FormGroup;
   idFuncionario: number = 0;

@@ -18,43 +18,140 @@
   }
 }
 
-
-td,
-th {
-  text-align: left;
-  padding: 8px;
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  //font-family: "Poppins";
 }
 
-th {
-  background: #9acef8;
+.layout-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
 }
 
-td {
-  background: #c3e3fd;
-}
-
-.container {
+nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
   height: 100%;
+  background: #c1c1c1;
+  width: 110px;
+  flex: 0 0 110px;
+  overflow: hidden;
+  transition: width 0.2s linear;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+nav:hover {
+  width: 250px;
+  transition: all 0.5s ease;
+}
+
+.logo {
+  text-align: center;
+  display: flex;
+  transition: all 0.5s ease;
+  margin: 10px 0 0 10px;
+}
+
+.logo ion-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.logo span {
+  //font-weight: bold;
+  padding-left: 15px;
+  font-size: 18px;
+  //text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.table-funcionarios td,
-.table-funcionarios th {
+a {
+  position: relative;
+  color: #000000;
+  font-size: 14px;
+  display: table;
+  width: 300px;
+  padding: 10px;
+  transition: all 0.5s ease;
+}
+
+i {
+  position: relative;
+  width: 90px;
+  height: 30px;
+  top: 4px;
+  font-size: 30px;
   text-align: center;
+}
+
+.nav-item {
+  position: relative;
+  //top: 12px;
+  font-size: 20px;
+  margin-left: 15px;
+}
+
+a:hover {
+  background: #a9a9a9;
+  color: #000000;
+}
+
+
+.logout {
+  position: absolute;
+  bottom: 0;
+}
+
+// MAIN
+
+main {
+  flex: 1;
+  margin-left: 110px;
+  width: calc(100% - 110px);
+  padding: 20px;
+  transition: margin-left 0.5s ease;
+}
+
+nav:hover+main {
+  margin-left: 250px;
 }
 
 .table-funcionarios {
   font-family: arial, sans-serif;
   border-collapse: collapse;
+  max-width: 100%;
   width: 100%;
 }
 
 .tabela {
-  height: 500px;
-  width: 1300px;
+  height: auto;
+  width: 100%;
 }
+
+.table-funcionarios td,
+.table-funcionarios th {
+  text-align: center;
+  padding: 8px;
+}
+
+.table-funcionarios th {
+  background: #9acef8;
+}
+
+.table-funcionarios td {
+  background: #c3e3fd;
+}
+
 
 .overlay {
   position: fixed;

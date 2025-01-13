@@ -33,11 +33,10 @@
 
       <div class="form-group">
         <label for="cargo" class="ion-margin">Cargo</label>
-        <ion-select class="always-flip" toggleIcon="caret-down-sharp" interface="popover" formControlName="cargo"
-          placeholder="Escolha o Cargo">
-          <ion-select-option value="administrador">Administrador</ion-select-option>
-          <ion-select-option value="funcionario">Funcionário</ion-select-option>
-        </ion-select>
+        <select formControlName="cargo" placeholder="Escolha o Cargo">
+          <option value="administrador">Administrador</option>
+          <option value="funcionario">Funcionário</option>
+        </select>
       </div>
 
 
@@ -47,6 +46,7 @@
 
       <ion-img src="../../../assets/image/systh_logo.png" class="responsiveImg"></ion-img>
 
+      <p *ngIf="mensagemErro != '' " style="margin-top: 30px; color: white;">{{mensagemErro}}</p>
 
 
     </form>

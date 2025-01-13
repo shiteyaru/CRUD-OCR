@@ -7,3 +7,4 @@ export type LoginModel = {
     name: string,
     message: string
 }
+

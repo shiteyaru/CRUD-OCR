@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
+import { HttpResponse, NotificacaoErro } from '../../models/notificacaoErro.model';
 import { LoginModel } from '../../models/login.model';
 
 @Component({
@@ -14,6 +15,7 @@ export class LoginPage implements OnInit {
 
   loginForm!: FormGroup;
   verificaLogin: boolean = false;
+  mensagemErro: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,12 +47,13 @@ export class LoginPage implements OnInit {
         this.verificaLogin = true;
         localStorage.setItem("Token", res.accessToken);
 
-        setTimeout(() => {
-          this.router.navigate(['/home']);
-        }, 2000);
+        //setTimeout(() => {
+        // this.router.navigate(['/home']);
+        //}, 2000);
       },
       error: (err) => {
         console.error("Erro ao logar Funcionário: ", err);
+        console.log(err);
       }
     });
   }
@@ -59,14 +62,14 @@ export class LoginPage implements OnInit {
     this.loginService.logarADM(administrador).subscribe({
       next: (res: LoginModel) => {
         this.verificaLogin = true;
+        this.mensagemErro = res.message;
         localStorage.setItem("Token_ADM", res.accessToken);
-
         setTimeout(() => {
           this.router.navigate(['/lista-funcionarios']);
         }, 2000);
       },
-      error: (error) => {
-        console.error("Erro ao logar Administrador: ", error);
+      error: (err: HttpResponse) => {
+        this.mensagemErro = err.error.mensagem;
       }
     });
   }

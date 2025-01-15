@@ -25,8 +25,8 @@
         </li>
         <li>
           <a href="#" class="logout">
-            <i class="fa fa-edit"></i>
-            <span class="nav-item">Log out</span>
+            <i style="color: red" class="fa fa-sign-out"></i>
+            <span class="nav-item" style="color: red">Log out</span>
           </a>
         </li>
       </ul>
@@ -40,6 +40,19 @@
             <th>CPF</th>
             <th>Email</th>
             <th></th>
+          </tr>
+          <tr *ngFor="let item of funcionarios">
+            <td>{{item.nome}}</td>
+            <td>{{item.cpf}}</td>
+            <td>{{item.email}}</td>
+            <div class="icons">
+              <td>
+                <i (click)="abrirForm(item)" class="fa fa-edit" style="font-size: 20px;"></i>
+              </td>
+              <td>
+                <i (click)="deletarFuncionario(item)" class="fa fa-trash-o" style="font-size: 20px;"></i>
+              </td>
+            </div>
           </tr>
         </table>
         <!-- <div class="botaoAdd">

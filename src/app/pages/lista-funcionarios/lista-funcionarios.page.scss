@@ -85,7 +85,7 @@ a {
   transition: all 0.5s ease;
 }
 
-i {
+nav ul li i {
   position: relative;
   width: 90px;
   height: 30px;
@@ -93,6 +93,7 @@ i {
   font-size: 30px;
   text-align: center;
 }
+
 
 .nav-item {
   position: relative;
@@ -152,6 +153,15 @@ nav:hover+main {
   background: #c3e3fd;
 }
 
+.table-funcionarios tr td i {
+  transition: .5s;
+  font-size: 50px;
+  text-align: center;
+}
+
+.table-funcionarios tr td i:hover {
+  transform: scale(1.1);
+}
 
 .overlay {
   position: fixed;
